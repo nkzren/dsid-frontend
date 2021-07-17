@@ -3,10 +3,10 @@ import { Line } from 'vue-chartjs'
 
 export default {
   extends: Line,
-  props: ['chartdata', 'options'],
+  props: ['chartData', 'options'],
   mounted() {
-    console.log({ chartdata: this.chartdata, options: this.options});
-    this.renderChart(this.chartdata, this.options)
-  }
+    console.log({ chartdata: this.chartData, options: this.options});
+    this.renderChart(this.chartData, this.options)
+  },
 }
 </script>
