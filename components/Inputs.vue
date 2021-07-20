@@ -19,6 +19,16 @@
         <input id="year-to" v-model="yearRange.to" />
       </div>
     </div>
+    
+    <div class="input-field">
+      <label for="select">Agrupar Por:</label>
+      <select id="select" v-model="groupBy">
+        <option value="">Selecione...</option>
+        <option value="year">Ano</option>
+        <option value="month">Mês</option>
+      </select>
+    </div>
+
     <div class="div-button">
       <button @click="buscar"> Buscar </button>
     </div>
@@ -34,16 +44,18 @@ export default {
         from: 2021,
         to: 2021,
       },
-      calcMethod: ""
+      calcMethod: "",
+      groupBy: "",
     }
   },
   methods: {
     buscar() {
-      console.log({ years: this.yearRange, calcMethod: this.calcMethod})
+      this.$emit("buttonClicked", {})
     },
   }
 }
 </script>
+
 
 <style>
 .input-container {
@@ -61,6 +73,8 @@ export default {
 .input-field > select, .input-field > input, .input-field > button {
   @apply border border-gray-200 p-1.5 my-0.5 rounded;
 }
+
+
 
 .input-group-period {
   @apply flex;

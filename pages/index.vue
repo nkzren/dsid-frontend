@@ -4,7 +4,7 @@
       <CColorModeProvider>
         <CBox>
           <HeaderCansado/>
-          <Inputs/>
+          <Inputs @buttonClicked="buscar"/>
           <MyChart class="chart-container" :chartData=chartData :options=options :height=200 />
         </CBox>
       </CColorModeProvider>
@@ -14,15 +14,21 @@
 
 <script>
 
+const setLabels = (a) => {
+  if (a === "Mês"){
+
+  }
+}
+
 export default {
   name: "Home",
   data: () => {
     return {
       chartData: {
-        labels: ["test1", "test2", "test3"],
+        labels: [0, 1],
         datasets: [
           {
-            data: [0.1, 0.2, 0.3, 0.4, 0.5],
+            data: [1, 2],
             label: "test",
             borderColor: "#3e95cd",
           }
@@ -31,10 +37,14 @@ export default {
       options: {},
     }
   },
-  async fetch() {
-    const { options, chartdata } = await this.$axios.$get('spark/average');
-    this.options = options;
-  } 
+  
+  methods:{
+    buscar(inputValues) {
+      console.log({inputValues})
+      console.log({value: this.chartData.datasets})
+    }
+  }
+
 }
 </script>
 
@@ -48,3 +58,4 @@ export default {
 }
 
 </style>
+
