@@ -30,7 +30,7 @@ function depressao(yearRange, data, groupBy){
     for(i; i<yearRange.length; i++){
       x = yearRange[i] - yearRange[i-1]
       if(x > 1){
-        for(let j=0; j<x; j++){
+        for(let j=0; j<x-1; j++){
           data.splice(k, 0, null)
           k++
         }
