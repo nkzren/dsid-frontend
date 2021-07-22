@@ -3,10 +3,37 @@ import { Line } from 'vue-chartjs'
 
 export default {
   extends: Line,
-  props: ['chartData', 'options'],
+
+  props: ['labels', 'datasets', 'options'],
+  computed: {
+    chartData: function() {
+      return this.data
+    }
+  },
+
   mounted() {
     console.log({ chartdata: this.chartData, options: this.options});
-    this.renderChart(this.chartData, this.options)
+    this.update()
   },
+
+  methods: {
+    update(){
+      this.renderChart({
+        labels: this.labels,
+        datasets: this.datasets,
+      }, 
+      this.options)
+      console.log("Tapioca")
+    }
+  },
+
+  watch: {
+    data: function() {
+      this._chart.destroy();
+      //this.renderChart(this.data, this.options);
+      this.update()
+    }
+  }
 }
+
 </script>

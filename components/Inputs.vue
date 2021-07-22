@@ -12,7 +12,7 @@
     <div class="input-group-period">
       <div class="input-field">
         <label for="year-from">De</label>
-        <input id="year-from" v-model="yearRange.from" :max=2021 :min=1930 />
+        <input id="year-from" v-model="yearRange.from" type=number :max=2021 :min=1930 />
       </div>
       <div class="input-field">
         <label for="year-to">Até</label>
@@ -36,6 +36,19 @@
 </template>
 
 <script>
+function range(a, b){
+  const from = parseInt(a)
+  const to = parseInt(b)
+
+  const arr = []
+  for(let i=from; i <= to; i ++){
+
+    arr.push(i)
+  }
+  return arr
+}
+
+
 export default {
   props: [ ],
   data() {
@@ -50,7 +63,11 @@ export default {
   },
   methods: {
     buscar() {
-      this.$emit("buttonClicked", {})
+      this.$emit("buttonClicked", {
+        yearRange: range(this.yearRange.from, this.yearRange.to),
+        calcMethod: this.calcMethod,
+        groupBy: this.groupBy,
+      })
     },
   }
 }
