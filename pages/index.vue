@@ -21,14 +21,13 @@
 </template>
 
 <script>
-function depressao(yearRange, data, groupBy){
-
+function setData(yearRangReq, data, groupBy){
   if(groupBy == 'year'){
     let i = 1
     let k = 1
 
-    for(i; i<yearRange.length; i++){
-      x = yearRange[i] - yearRange[i-1]
+    for(i; i<yearRangReq.length; i++){
+      const x = yearRangReq[i] - yearRangReq[i-1]
       if(x > 1){
         for(let j=0; j<x-1; j++){
           data.splice(k, 0, null)
@@ -37,6 +36,28 @@ function depressao(yearRange, data, groupBy){
       }
       k++
     }
+  }
+  else{
+    let k = 1
+    let i = 1
+
+    for(i; i<yearRangReq.length; i++){
+      const ano1 = parseInt(yearRangReq[i-1].split("/")[1])
+      const mes1 = parseInt(yearRangReq[i-1].split("/")[0])
+
+      const ano2 = parseInt(yearRangReq[i].split("/")[1])
+      const mes2 = parseInt(yearRangReq[i].split("/")[0])
+      const x = ((ano2-ano1)*12) + mes2 - mes1
+
+      if(x > 1){
+        for(let j=0; j<x-1; j++){
+          data.splice(k, 0, null)
+          k++
+        }
+      }
+      k++
+    }
+    
   }
   return data
 }

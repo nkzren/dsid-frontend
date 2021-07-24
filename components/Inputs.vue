@@ -16,16 +16,25 @@
       </div>
       <div class="input-field">
         <label for="year-to">Até</label>
-        <input id="year-to" v-model="yearRange.to" />
+        <input id="year-to" v-model="yearRange.to" type=number />
       </div>
     </div>
-    
     <div class="input-field">
       <label for="select">Agrupar Por:</label>
       <select id="select" v-model="groupBy">
         <option value="">Selecione...</option>
         <option value="year">Ano</option>
         <option value="month">Mês</option>
+      </select>
+    </div>
+    <div class="input-field">
+      <label for="select">Informação:</label>
+      <select id="select" v-model="groupBy">
+        <option value="">Selecione...</option>
+        <option value="air-temperature">Air Temperature</option>
+        <option value="sea-level-pressure">Sea Level Pressure</option>
+        <option value="wind-speed">Wind Speed</option>
+        <option value="mean-visibility">Mean Visibility</option>
       </select>
     </div>
 
