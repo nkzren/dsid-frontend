@@ -36,8 +36,7 @@ function setData(yearRangReq, data, groupBy){
       }
       k++
     }
-  }
-  else{
+  } else {
     let k = 1
     let i = 1
 
@@ -78,6 +77,7 @@ const setLabels = (groupBy, yearRange) => {
   }
 }
 
+
 export default {
   name: "Home",
   data: () => {
@@ -99,16 +99,18 @@ export default {
     }
   },
 
-  async mounted() {
-    await console.log(this.$axios.$get('/inventory'))
-  },
+
   
   methods:{
-    buscar(inputValues) {
-      console.log({inputValues})
-      this.chartData.labels = setLabels(inputValues.groupBy, inputValues.yearRange)
-      this.chartData.datasets[0].data = [1,8,3, 5, 7, 12,6]
-      this.chartData.datasets[0].label = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+    async buscar(inputValues) {
+      this.chartData.labels = setLabels(inputValues.groupBy, inputValues.yearRange) 
+
+      const response = await this.$axios.$get(`spark/${inputValues.calcMethod}/${inputValues.groupBy}?from=${inputValues.yearFrom}&to=${inputValues.yearTo}&id=${inputValues.id}&columnName=${inputValues.columnName}`);
+
+      //setData(response.labels, response.data, inputValues.groupBy)
+      this.chartData.datasets[0].data = setData(response.labels, response.data, inputValues.groupBy);
+      this.chartData.datasets[0].label = response.label;
       console.log({labels: this.chartData.labels})
 
       this.renderChart = false

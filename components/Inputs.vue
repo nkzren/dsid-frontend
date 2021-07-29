@@ -1,5 +1,15 @@
 <template>
   <div class="input-container">
+  <div class="input-field">
+      <label for="select">Id:</label>
+      <select id="select" v-model="id">
+        <option value="">Selecione...</option>
+        <option value="977800-99999">977800-99999</option>
+        <option value="033770-99999">033770-99999</option>
+        <option value="033960-99999">033960-99999</option>
+        <option value="957620-99999">957620-99999</option>
+      </select>
+    </div>
     <div class="input-field">
       <label for="select-metodo">Escolha o método:</label>
       <select id="select-metodo" v-model="calcMethod">
@@ -29,12 +39,12 @@
     </div>
     <div class="input-field">
       <label for="select">Informação:</label>
-      <select id="select" v-model="info">
+      <select id="select" v-model="columnName">
         <option value="">Selecione...</option>
-        <option value="air-temperature">Air Temperature</option>
-        <option value="sea-level-pressure">Sea Level Pressure</option>
-        <option value="wind-speed">Wind Speed</option>
-        <option value="mean-visibility">Mean Visibility</option>
+        <option value="Mean_Temp">Temperature</option>
+        <option value="Mean_Sea_Level_Pressure">Sea Level Pressure</option>
+        <option value="Mean_Windspeed">Wind Speed</option>
+        <option value="Mean_Visibility">Mean Visibility</option>
       </select>
     </div>
 
@@ -68,15 +78,20 @@ export default {
       },
       calcMethod: "",
       groupBy: "",
-      info: "",
+      columnName: "",
+      id: "",
     }
   },
   methods: {
     buscar() {
       this.$emit("buttonClicked", {
+        id: this.id,
+        yearFrom: this.yearRange.from,
+        yearTo: this.yearRange.to,
         yearRange: range(this.yearRange.from, this.yearRange.to),
         calcMethod: this.calcMethod,
         groupBy: this.groupBy,
+        columnName: this.columnName,
       })
     },
   }
