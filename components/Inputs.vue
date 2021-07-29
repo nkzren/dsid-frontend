@@ -29,7 +29,7 @@
     </div>
     <div class="input-field">
       <label for="select">Informação:</label>
-      <select id="select" v-model="groupBy">
+      <select id="select" v-model="info">
         <option value="">Selecione...</option>
         <option value="air-temperature">Air Temperature</option>
         <option value="sea-level-pressure">Sea Level Pressure</option>
@@ -68,6 +68,7 @@ export default {
       },
       calcMethod: "",
       groupBy: "",
+      info: "",
     }
   },
   methods: {
@@ -99,7 +100,6 @@ export default {
 .input-field > select, .input-field > input, .input-field > button {
   @apply border border-gray-200 p-1.5 my-0.5 rounded;
 }
-
 
 
 .input-group-period {
