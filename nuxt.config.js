@@ -44,7 +44,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:8888'
+    baseURL: 'http://localhost:8080'
   },
 
   chakra: {
